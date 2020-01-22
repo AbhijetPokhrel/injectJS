@@ -1,0 +1,42 @@
+<html>
+
+<head>
+    <title>Inject scripts</title>
+</head>
+
+<body>
+    <div id="inject_container"></div>
+    <div>
+        <textarea id="scripts_container" placeholder="Script here.."></textarea>
+    </div>
+    <button id="inject_btn">Inject</button>
+</body>
+<script src="index.js"></script>
+<script>
+
+    let
+        injectBtn = null,
+        injectContainer = null,
+        scriptContainer = null;
+
+    function init() {
+        injectBtn = document.getElementById("inject_btn");
+        scriptContainer = document.getElementById("scripts_container");
+        injectContainer = document.getElementById("inject_container");
+
+        injectBtn.onclick = injectTextAreaScript;
+    }
+
+    function injectTextAreaScript() {
+        console.log("onclick :: ",scriptContainer.value);
+        const scriptHTMLStr = generateScriptsHTML(scriptContainer.value);
+        console.log("script ::"+scriptHTMLStr);
+        const divElem = document.createElement("div");
+        divElem.innerHTML = scriptHTMLStr;
+        injectContainer.appendChild(divElem);
+    }
+
+    window.onload = init()
+</script>
+
+</html>
